@@ -1,7 +1,3 @@
-# AI-Learning-Dyslexia-Dysgraphia
-AI-powered learning platform for identifying and assisting children with dyslexia and dysgraphia.
-
-
 <p align="center">
   <img src="assets/banner.png" alt="AI Learning Assistant Banner" width="100%">
 </p>
