@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.png" alt="AI Learning Assistant Banner" width="100%">
+  <img src="assets/Banner.png" alt="AI Learning Assistant Banner" width="100%">
 </p>
 
 <h1 align="center">🧠 AI Learning Assistant for Students with Dyslexia and Dysgraphia</h1>
