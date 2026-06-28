@@ -178,7 +178,7 @@ Generates personalized learning recommendations based on the prediction results 
 ### Dashboard
 
 <p align="center">
-<img src="Screenshots/screen-3.png" width="900">
+<img src="Screenshots/screen-3.Png" width="900">
 </p>
 
 ---
