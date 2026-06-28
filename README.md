@@ -162,7 +162,7 @@ Generates personalized learning recommendations based on the prediction results 
 ### Home Page
 
 <p align="center">
-<img src="screenshots/screen-1.png" width="900">
+<img src="Screenshots/screen-1.png" width="900">
 </p>
 
 ---
@@ -170,7 +170,7 @@ Generates personalized learning recommendations based on the prediction results 
 ### Login Page
 
 <p align="center">
-<img src="screenshots/screen-2.png" width="900">
+<img src="Screenshots/screen-2.png" width="900">
 </p>
 
 ---
@@ -178,7 +178,7 @@ Generates personalized learning recommendations based on the prediction results 
 ### Dashboard
 
 <p align="center">
-<img src="screenshots/screen-3.png" width="900">
+<img src="Screenshots/screen-3.png" width="900">
 </p>
 
 ---
@@ -186,7 +186,7 @@ Generates personalized learning recommendations based on the prediction results 
 ### Handwriting Analysis
 
 <p align="center">
-<img src="screenshots/screen-4.png" width="900">
+<img src="Screenshots/screen-4.png" width="900">
 </p>
 
 ---
@@ -194,7 +194,7 @@ Generates personalized learning recommendations based on the prediction results 
 ### Personalized Learning Recommendation
 
 <p align="center">
-<img src="screenshots/screen-5.png" width="900">
+<img src="Screenshots/screen-5.png" width="900">
 </p>
 
 ---
@@ -202,7 +202,7 @@ Generates personalized learning recommendations based on the prediction results 
 ### Student Progress
 
 <p align="center">
-<img src="screenshots/screen-6.png" width="900">
+<img src="Screenshots/screen-6.png" width="900">
 </p>
 
 ---
