@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Learning Support System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 14px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .output-box {
+            background: #ffffff;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 8px;
+            max-width: 900px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .week-title {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+
+<h2>AI-Based Dyslexia & Dysgraphia Support Generator</h2>
+
+<form method="POST">
+    <label>Student Name:</label>
+    <input type="text" name="name" required>
+
+    <label>Dyslexia Score (0–100):</label>
+    <input type="number" name="dyslexia_score" min="0" max="100" required>
+
+    <label>Dysgraphia Score (0–100):</label>
+    <input type="number" name="dysgraphia_score" min="0" max="100" required>
+
+    <button type="submit">Generate 4-Week Plan</button>
+</form>
+
+{% if error %}
+    <div class="error">{{ error }}</div>
+{% endif %}
+{{result}}
+{% if result %}
+    <div class="output-box">
+        <h3>Generated Learning Plan</h3>
+
+        {% for line in result %}
+            {% if "Week" in line %}
+                <h4 class="week-title">{{ line }}</h4>
+            {% elif "Reading Activity" in line %}
+                <div class="section-title">📖 Reading Activity</div>
+            {% elif "Writing Activity" in line %}
+                <div class="section-title">✍️ Writing Activity</div>
+            {% elif "Motor Skills Activity" in line %}
+                <div class="section-title">🖐️ Motor Skills Activity</div>
+            {% elif "Assessment Method" in line %}
+                <div class="section-title">📝 Assessment Method</div>
+            {% else %}
+                <p>{{ line }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+</body>
+</html>

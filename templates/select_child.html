@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}Select Child{% endblock %}
+
+{% block content %}
+    <h2>🧑‍🎓 Select a Child for Assessment</h2>
+    <p>Please choose which child you want to run a screening test for:</p>
+
+    <ul style="list-style: none; padding: 0;">
+        {% for id, name in children %}
+        <li style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 1.1em; font-weight: bold;">{{ name }}</span>
+            <a href="{{ url_for('start_assessment', child_id=id) }}" class="btn btn-primary">Start Assessment</a>
+        </li>
+        {% else %}
+        <li>No children added yet. Please add a child on the <a href="{{ url_for('parent_dashboard') }}">Parent Dashboard</a>.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

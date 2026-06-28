@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}D-Intervention Platform{% endblock %}</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* Custom Tailwind Colors (Using Indigo for Primary, Cyan for Secondary Accent) */
+        :root {
+            --color-primary: #4f46e5; /* Indigo 600 */
+            --color-accent: #06b6d4; /* Cyan 500 */
+        }
+
+        /* High-End Background Coloring */
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            /* Subtle dark/light gradient for depth */
+            background: linear-gradient(135deg, #f7f9fb 0%, #edf2f7 100%); 
+            color: #1f2937; 
+        }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+
+        /* Custom scrollbar styling (Professional and subtle) */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #e0e7ff; /* Lighter blue track */ }
+        ::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3730a3; } 
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+    
+    <nav class="bg-white shadow-xl sticky top-0 z-50 transition-all duration-300 ease-in-out">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center">
+                    <a href="{{ url_for('index') }}" class="flex-shrink-0 flex items-center gap-3 text-3xl font-extrabold text-indigo-600 tracking-wider hover:text-indigo-800 transition duration-300 transform hover:scale-105">
+                        <i class="fas fa-brain text-cyan-500 text-3xl"></i>
+                        <span>D-Intervention</span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    {% if session.get('role') == 'admin' %}
+                        <a href="{{ url_for('admin_dashboard') }}" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 border-b-2 border-transparent hover:border-indigo-600 pb-1">Admin Dashboard</a>
+                        <a href="{{ url_for('logout') }}" class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg transition duration-300 transform hover:scale-105">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    {% elif session.get('role') == 'parent' %}
+                        <a href="{{ url_for('parent_dashboard') }}" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 border-b-2 border-transparent hover:border-indigo-600 pb-1">
+                            <i class="fas fa-tachometer-alt mr-1"></i> Dashboard
+                        </a>
+                        <a href="{{ url_for('logout') }}" class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg transition duration-300 transform hover:scale-105">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('parent_register') }}" class="text-gray-700 hover:text-cyan-500 font-medium transition duration-300 border-b-2 border-transparent hover:border-cyan-500 pb-1">Register</a>
+                        <a href="{{ url_for('login') }}" class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg transition duration-300 transform hover:scale-105">
+                            <i class="fas fa-user-circle"></i> Login
+                        </a>
+                    {% endif %}
+                </div>
+
+                <div class="-mr-2 flex md:hidden items-center">
+                    <button type="button" class="text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl mx-auto w-full py-10 px-4 sm:px-6 lg:px-8">
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="mb-10 space-y-4" data-aos="fade-down" data-aos-duration="600">
+                {% for category, message in messages %}
+                    <div class="flex items-center p-5 rounded-xl shadow-lg border-l-8 
+                        {% if category == 'success' %} bg-green-50 text-green-800 border-green-500
+                        {% elif category == 'error' or category == 'warning' %} bg-red-50 text-red-800 border-red-500
+                        {% else %} bg-blue-50 text-blue-800 border-blue-500 {% endif %}">
+                        
+                        <div class="flex-shrink-0 mr-4">
+                            {% if category == 'success' %}<i class="fas fa-check-circle text-2xl"></i>
+                            {% elif category == 'error' %}<i class="fas fa-exclamation-triangle text-2xl"></i>
+                            {% else %}<i class="fas fa-info-circle text-2xl"></i>{% endif %}
+                        </div>
+                        <div class="font-semibold">{{ message }}</div>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="bg-white p-8 md:p-12 shadow-2xl rounded-3xl border border-gray-200 min-h-[60vh]" 
+             data-aos="fade-up" 
+             data-aos-duration="1000" 
+             data-aos-easing="ease-out-cubic">
+            {% block content %}{% endblock %}
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-800 border-t border-indigo-700 mt-auto pt-10 pb-6 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-6">
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-3">D-Intervention</h3>
+                    <p class="text-gray-400 text-sm max-w-sm">
+                        Driving personalized intervention through AI-powered detection and custom curriculum generation for Dyslexia and Dysgraphia.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-indigo-400">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="{{ url_for('index') }}" class="text-gray-400 hover:text-cyan-400 transition duration-150">Home</a></li>
+                        <li><a href="{{ url_for('parent_register') }}" class="text-gray-400 hover:text-cyan-400 transition duration-150">Register</a></li>
+                        <li><a href="{{ url_for('login') }}" class="text-gray-400 hover:text-cyan-400 transition duration-150">Login</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-indigo-400">Legal & Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="{{ url_for('privacy_policy') }}" class="text-gray-400 hover:text-cyan-400 transition duration-150">Privacy Policy</a></li>
+                        <li><a href="{{ url_for('terms_of_service') }}" class="text-gray-400 hover:text-cyan-400 transition duration-150">Terms of Service</a></li>
+                        <li><a href="{{ url_for('contact_support') }}" class="text-gray-400 hover:text-cyan-400 transition duration-150">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center text-sm text-gray-500">
+                <p>&copy; {{ 2025 }} D-Intervention Platform. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <i class="fab fa-facebook hover:text-cyan-400 cursor-pointer"></i>
+                    <i class="fab fa-twitter hover:text-cyan-400 cursor-pointer"></i>
+                    <i class="fab fa-linkedin hover:text-cyan-400 cursor-pointer"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize Animate On Scroll (More aggressive settings for high-end feel)
+      AOS.init({
+        duration: 1000,
+        offset: 120,
+        once: true, 
+        easing: 'ease-in-out'
+      });
+    </script>
+</body>
+</html>

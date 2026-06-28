@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block title %}Speech Assessment{% endblock %}
+
+{% block content %}
+    <h2>🎤 Dyslexia Assessment: Reading Task</h2>
+    <p>Reading Prompt **{{ prompt_num }}** of **{{ total }}** for **{{ child_name }}**</p>
+
+    <div style="border: 2px solid #007bff; padding: 20px; border-radius: 8px; background-color: #e9f5ff; text-align: center; margin-bottom: 20px;">
+        <h3 id="reading-prompt">{{ prompt }}</h3>
+    </div>
+
+    <div style="text-align: center;">
+        <button id="record-btn" class="btn btn-danger">🔴 Start Recording</button>
+        <button id="stop-btn" class="btn btn-primary" disabled>⬛ Stop & Analyze</button>
+        <div id="status" style="margin-top: 15px; font-weight: bold;">Click Start to begin.</div>
+        <textarea id="spoken-text-input" placeholder="Spoken Text will appear here after analysis (SIMULATION)" style="width: 80%; margin-top: 10px;"></textarea>
+    </div>
+
+    <script>
+        // --- Client-side JavaScript Simulation ---
+        const recordBtn = document.getElementById('record-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const statusDiv = document.getElementById('status');
+        const promptEl = document.getElementById('reading-prompt');
+        const spokenInput = document.getElementById('spoken-text-input');
+
+        let currentPrompt = "{{ prompt }}";
+
+        recordBtn.onclick = () => {
+            statusDiv.textContent = 'Recording... Say the sentence above.';
+            recordBtn.disabled = true;
+            stopBtn.disabled = false;
+        };
+
+        stopBtn.onclick = () => {
+            statusDiv.textContent = 'Analyzing... Please wait for the score.';
+            stopBtn.disabled = true;
+            
+            // --- ⚠️ SIMULATION OF API CALL & TRANSCRIPTION ⚠️ ---
+            const simulatedSpokenText = simulateTranscription(currentPrompt);
+            spokenInput.value = simulatedSpokenText;
+            // ---------------------------------------------------
+
+            fetch('{{ url_for("submit_speech_response") }}', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ spoken_text: simulatedSpokenText })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.next) {
+                    currentPrompt = data.prompt;
+                    promptEl.innerHTML = data.prompt;
+                    statusDiv.innerHTML = `✅ Response scored. Next prompt (${data.prompt_num} of ${data.total}).`;
+                    recordBtn.disabled = false;
+                    spokenInput.value = '';
+                } else {
+                    statusDiv.innerHTML = `Assessment Complete! Result: **${data.verdict}** (Score: ${data.avg_score})`;
+                    alert(`Assessment Complete! Result: ${data.verdict}`);
+                    window.location.href = '{{ url_for("parent_dashboard") }}'; // Redirect after final score
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                statusDiv.textContent = 'An error occurred during analysis.';
+                recordBtn.disabled = false;
+            });
+        };
+
+        // Poor simulation to demonstrate error generation
+        function simulateTranscription(target) {
+            if (Math.random() < 0.2) {
+                // Introduce error (simulating phonological loop issues/transcription error)
+                return target.replace('bread', 'bred').replace('kitchen', 'kichen');
+            }
+            if (Math.random() < 0.1) {
+                // Introduce extra words
+                return "The " + target;
+            }
+            return target; // Perfect match
+        }
+    </script>
+{% endblock %}

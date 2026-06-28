@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+    <header class="mb-8">
+        <h2 class="text-3xl font-bold text-gray-800"><i class="fas fa-chart-line mr-2 text-indigo-600"></i>Admin Dashboard: All Patient Records</h2>
+        <p class="text-gray-500 mt-1">Overview of all children, their parents, and recent assessment activity.</p>
+    </header>
+
+    <div class="overflow-x-auto bg-white shadow-md rounded-lg p-4">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Parent</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Test Date</th>
+                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Latest Dyslexia Score</th>
+                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Latest Dysgraphia Score</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                {% for record in records %}
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ record['id'] }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ record['name'] }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ record['age'] }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ record['parent_name'] }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ record['last_assessment_date'] if record['last_assessment_date'] else 'N/A' }}</td>
+                    
+                    <td class="px-6 py-4 whitespace-nowrap text-center font-semibold">
+                        {% if record['dyslexia_score'] is none %}
+                            <span class="text-gray-500">N/A</span>
+                        {% elif record['dyslexia_score'] >= 0.5 %}
+                            <span class="text-red-600 bg-red-100 text-xs px-3 py-1 rounded-full"><i class="fas fa-times-circle mr-1"></i> {{ "{:.2f}".format(record['dyslexia_score']) }}</span>
+                        {% else %}
+                            <span class="text-green-600 bg-green-100 text-xs px-3 py-1 rounded-full"><i class="fas fa-thumbs-up mr-1"></i> {{ "{:.2f}".format(record['dyslexia_score']) }}</span>
+                        {% endif %}
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-nowrap text-center font-semibold">
+                        {% if record['dysgraphia_score'] is none %}
+                            <span class="text-gray-500">N/A</span>
+                        {% elif record['dysgraphia_score'] >= 0.5 %}
+                            <span class="text-red-600 bg-red-100 text-xs px-3 py-1 rounded-full"><i class="fas fa-times-circle mr-1"></i> {{ "{:.2f}".format(record['dysgraphia_score']) }}</span>
+                        {% else %}
+                            <span class="text-green-600 bg-green-100 text-xs px-3 py-1 rounded-full"><i class="fas fa-thumbs-up mr-1"></i> {{ "{:.2f}".format(record['dysgraphia_score']) }}</span>
+                        {% endif %}
+                    </td>
+
+                    <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
+                        <a href="{{ url_for('child_progress', child_id=record['id']) }}" class="text-indigo-600 hover:text-indigo-800 transition duration-150">View Details</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="8" class="px-6 py-4 text-center text-sm text-gray-500">No patient records found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-8">
+        <a href="{{ url_for('export_csv') }}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 transition duration-150">
+            <i class="fas fa-download mr-2"></i> Export All Data to CSV
+        </a>
+    </div>
+{% endblock %}

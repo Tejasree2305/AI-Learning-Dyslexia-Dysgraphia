@@ -1,0 +1,203 @@
+{% extends "layout.html" %}
+
+{% block title %}Contact Support - D-Intervention{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-12" data-aos="fade-down">
+        <div class="inline-block p-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mb-4">
+            <i class="fas fa-headset text-4xl text-white"></i>
+        </div>
+        <h1 class="text-4xl font-bold text-gray-800 mb-3">Contact Support</h1>
+        <p class="text-gray-600 text-lg">We're here to help! Choose the best way to reach our support team.</p>
+        <div class="mt-4 flex flex-wrap justify-center gap-2">
+            <span class="inline-block bg-green-100 text-green-800 text-sm px-4 py-1 rounded-full">
+                <i class="fas fa-clock mr-1"></i>24/7 Email Support
+            </span>
+            <span class="inline-block bg-blue-100 text-blue-800 text-sm px-4 py-1 rounded-full">
+                <i class="fas fa-phone mr-1"></i>Business Hours: 9AM-6PM EST
+            </span>
+            <span class="inline-block bg-purple-100 text-purple-800 text-sm px-4 py-1 rounded-full">
+                <i class="fas fa-comments mr-1"></i>Average Response: 4-6 hours
+            </span>
+        </div>
+    </div>
+
+    <!-- Support Options Grid -->
+    <div class="grid md:grid-cols-3 gap-8 mb-12" data-aos="fade-up" data-aos-delay="200">
+        <!-- Email Support -->
+        <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-cyan-500 transform hover:scale-105 transition duration-300">
+            <div class="text-center mb-6">
+                <div class="inline-block p-4 bg-cyan-100 rounded-full mb-4">
+                    <i class="fas fa-envelope text-3xl text-cyan-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Email Support</h3>
+                <p class="text-gray-600 text-sm mb-4">Best for detailed inquiries and documentation</p>
+            </div>
+            <div class="text-center">
+                <a href="mailto:support@d-intervention.com" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-6 rounded-full w-full transition duration-300">
+                    <i class="fas fa-paper-plane mr-2"></i>Email Us
+                </a>
+                <p class="text-sm text-gray-500 mt-3">support@d-intervention.com</p>
+            </div>
+            <div class="mt-6 pt-6 border-t">
+                <h4 class="font-semibold text-gray-700 mb-2">When to use:</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                    <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i>Account issues</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i>Technical problems</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i>Data access requests</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Emergency Contact -->
+        <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-red-500 transform hover:scale-105 transition duration-300">
+            <div class="text-center mb-6">
+                <div class="inline-block p-4 bg-red-100 rounded-full mb-4">
+                    <i class="fas fa-exclamation-triangle text-3xl text-red-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Urgent Medical Concerns</h3>
+                <p class="text-gray-600 text-sm mb-4">For immediate medical assistance</p>
+            </div>
+            <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
+                <p class="text-red-700 text-sm font-semibold text-center">
+                    <i class="fas fa-stethoscope mr-2"></i>This platform is for educational screening only
+                </p>
+            </div>
+            <div class="space-y-4">
+                <div class="text-center">
+                    <p class="text-sm text-gray-600 mb-2">If you need immediate medical help:</p>
+                    <a href="tel:911" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full w-full transition duration-300">
+                        <i class="fas fa-phone mr-2"></i>Call 911 (Emergency)
+                    </a>
+                </div>
+                <div class="text-center">
+                    <p class="text-sm text-gray-600 mb-2">For mental health support:</p>
+                    <a href="tel:988" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full w-full transition duration-300">
+                        <i class="fas fa-life-ring mr-2"></i>988 Suicide & Crisis Lifeline
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Protection Officer -->
+        <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-green-500 transform hover:scale-105 transition duration-300">
+            <div class="text-center mb-6">
+                <div class="inline-block p-4 bg-green-100 rounded-full mb-4">
+                    <i class="fas fa-user-shield text-3xl text-green-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Data Protection Officer</h3>
+                <p class="text-gray-600 text-sm mb-4">For privacy and data concerns</p>
+            </div>
+            <div class="text-center">
+                <a href="mailto:dpo@d-intervention.com" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full w-full transition duration-300">
+                    <i class="fas fa-shield-alt mr-2"></i>Contact DPO
+                </a>
+                <p class="text-sm text-gray-500 mt-3">dpo@d-intervention.com</p>
+            </div>
+            <div class="mt-6 pt-6 border-t">
+                <h4 class="font-semibold text-gray-700 mb-2">When to contact:</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                    <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i>Data access requests</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i>Privacy concerns</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i>GDPR compliance</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i>Data deletion requests</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- FAQ Section -->
+    <div class="bg-white p-8 rounded-2xl shadow-xl" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Frequently Asked Questions</h2>
+        <div class="space-y-4 max-w-3xl mx-auto">
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+                <button class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition duration-300 flex justify-between items-center" onclick="toggleFAQ(1)">
+                    <span class="font-semibold text-gray-800">How long does it take to get a response?</span>
+                    <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-1"></i>
+                </button>
+                <div class="px-6 py-4 hidden" id="faq-content-1">
+                    <p class="text-gray-600">Email responses are typically sent within 4-6 hours during business hours (9AM-6PM EST). For urgent matters marked as such, we aim to respond within 2 hours.</p>
+                </div>
+            </div>
+
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+                <button class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition duration-300 flex justify-between items-center" onclick="toggleFAQ(2)">
+                    <span class="font-semibold text-gray-800">Can I delete my child's assessment data?</span>
+                    <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-2"></i>
+                </button>
+                <div class="px-6 py-4 hidden" id="faq-content-2">
+                    <p class="text-gray-600">Yes, you can request deletion of assessment data by contacting our Data Protection Officer at dpo@d-intervention.com. Please note that some data may be retained for regulatory compliance purposes.</p>
+                </div>
+            </div>
+
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+                <button class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition duration-300 flex justify-between items-center" onclick="toggleFAQ(3)">
+                    <span class="font-semibold text-gray-800">Is my child's data secure?</span>
+                    <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-3"></i>
+                </button>
+                <div class="px-6 py-4 hidden" id="faq-content-3">
+                    <p class="text-gray-600">Absolutely. We use enterprise-grade encryption (SSL/TLS for transit, AES-256 for storage), regular security audits, and strict access controls. We are HIPAA and GDPR compliant.</p>
+                </div>
+            </div>
+
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+                <button class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition duration-300 flex justify-between items-center" onclick="toggleFAQ(4)">
+                    <span class="font-semibold text-gray-800">Do you offer phone support?</span>
+                    <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-4"></i>
+                </button>
+                <div class="px-6 py-4 hidden" id="faq-content-4">
+                    <p class="text-gray-600">Currently, we offer email support for detailed documentation and tracking. For urgent matters, we may schedule a callback if email communication is insufficient.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-8 max-w-md mx-4 transform transition-all duration-300 scale-95">
+        <div class="text-center">
+            <div class="inline-block p-4 bg-green-100 rounded-full mb-4">
+                <i class="fas fa-check-circle text-4xl text-green-600"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">Message Sent Successfully!</h3>
+            <p class="text-gray-600 mb-6">Thank you for contacting us. We'll get back to you within 24 hours.</p>
+            <button onclick="closeModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleFAQ(num) {
+        const content = document.getElementById(`faq-content-${num}`);
+        const icon = document.getElementById(`faq-icon-${num}`);
+        content.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+    }
+
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // In a real application, you would send this to your backend
+        // For now, we'll just show the success modal
+        document.getElementById('successModal').classList.remove('hidden');
+        this.reset();
+    });
+
+    function closeModal() {
+        document.getElementById('successModal').classList.add('hidden');
+    }
+</script>
+
+<style>
+    .rotate-180 {
+        transform: rotate(180deg);
+    }
+</style>
+{% endblock %}

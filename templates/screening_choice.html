@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}Screening Choice{% endblock %}
+
+{% block content %}
+    <h2>📋 Assessment Type Selection</h2>
+    <p>Please choose which screening you wish to perform for **{{ session.get('current_child_name', 'your child') }}**:</p>
+
+    <div style="display: flex; justify-content: space-around; margin-top: 30px;">
+        <div style="text-align: center; border: 1px solid #007bff; padding: 20px; border-radius: 8px; width: 45%;">
+            <h3>Dyslexia Screening (Speech & NLP)</h3>
+            <p>Assesses phonological awareness and reading fluency.</p>
+            <form method="POST" action="{{ url_for('start_speech') }}">
+                <button type="submit" class="btn btn-primary">Start Speech Test</button>
+            </form>
+        </div>
+        
+        <div style="text-align: center; border: 1px solid #28a745; padding: 20px; border-radius: 8px; width: 45%;">
+            <h3>Dysgraphia Screening (Handwriting)</h3>
+            <p>Analyzes writing style using Xception Net.</p>
+            <a href="{{ url_for('handwriting_upload') }}" class="btn btn-success">Start Handwriting Test</a>
+        </div>
+    </div>
+{% endblock %}

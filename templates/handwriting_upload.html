@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}Handwriting Assessment{% endblock %}
+
+{% block content %}
+    <h2>✍️ Dysgraphia Assessment: Handwriting Upload</h2>
+    <p>Please upload a clear image (PNG/JPG) of **{{ child_name }}'s** recent handwriting sample for analysis by the Xception Net model.</p>
+
+    <div style="border: 1px dashed #28a745; padding: 25px; text-align: center; border-radius: 8px;">
+        <form method="POST" action="{{ url_for('upload_handwriting') }}" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Select Handwriting Image:</label>
+                <input type="file" id="file" name="file" accept=".png, .jpg, .jpeg" required>
+            </div>
+            <button type="submit" class="btn btn-success">Upload & Analyze</button>
+        </form>
+    </div>
+{% endblock %}

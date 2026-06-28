@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <header style="text-align: center; padding: 40px; background-color: #e9f5ff; border-radius: 8px;">
+        <h1>Welcome to the Dyslexia & Dysgraphia Intervention Platform</h1>
+        <p class="lead" style="font-size: 1.2em; margin-top: 15px; color: #555;">
+            Leveraging AI and Deep Learning for early detection and personalized 4-week intervention plans.
+        </p>
+    </header>
+
+    <div style="margin-top: 40px;">
+        <h2>Key Features:</h2>
+        <ul style="list-style: none; padding: 0; display: flex; justify-content: space-around;">
+            <li style="width: 30%; border: 1px solid #007bff; padding: 20px; border-radius: 6px; text-align: center;">
+                <h3>🎤 AI Dyslexia Screening</h3>
+                <p>Uses Speech-to-Text and NLP to analyze phonological awareness and reading fluency.</p>
+            </li>
+            <li style="width: 30%; border: 1px solid #28a745; padding: 20px; border-radius: 6px; text-align: center;">
+                <h3>✍️ Deep Learning Dysgraphia Test</h3>
+                <p>Employs **Xception Net** (simulated) for detailed analysis of handwriting patterns.</p>
+            </li>
+            <li style="width: 30%; border: 1px solid #ffc107; padding: 20px; border-radius: 6px; text-align: center;">
+                <h3>📅 Personalized 4-Week Plan</h3>
+                <p>**Gemini AI** generates a weekly, tailored intervention curriculum based on assessment scores.</p>
+            </li>
+        </ul>
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; border-top: 1px solid #2522eb; padding-top: 20px;">
+        <p>
+            Ready to get started? <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a> or 
+            <a href="{{ url_for('parent_register') }}" class="btn btn-success">Register as a Parent</a>.
+        </p>
+    </footer>
+{% endblock %}
