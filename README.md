@@ -78,13 +78,6 @@ This project uses Artificial Intelligence and Machine Learning techniques to ana
 
 ---
 
-## 🏗️ System Architecture
-
-<p align="center">
-<img src="docs/architecture.png" width="900">
-</p>
-
----
 
 ## 🔄 Project Workflow
 
